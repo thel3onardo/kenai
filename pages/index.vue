@@ -1,16 +1,16 @@
 <template>
-  <div class="w-screen h-screen bg-black py-5">
+  <div class="min-w-screen min-h-screen bg-black py-5">
     <nav class="w-full flex justify-between px-5">
       <span class="text-4xl font-bold gradient-color">Kenai</span>
       <span class="text-white text-3xl font-extralight">{{ current_time }}</span>
     </nav>
-    <main class="flex flex-col justify-center items-center">
-      <h2 class="text-6xl text-white pt-14">Bem-vindo de volta ao Kenai</h2>
+    <main class="flex flex-col justify-center items-center main__container">
+      <h2 class="text-6xl text-white pt-14 text-center lg:text-left">Bem-vindo de volta ao Kenai</h2>
       <h4 class="text-4xl text-white py-5">Quem está usando?</h4>
-      <div class="flex py-5">
+      <div class="flex flex-col md:flex-row py-5">
         <profile-item v-for="profile in profile_list" :key="profile.name" :pic="profile.pic" :name="profile.name"/>
       </div>
-      <button class="bg-gray-900 text-white py-3 px-8 hover:opacity-60 flex items-center">
+      <button class="bg-gray-900 text-white py-3 mb-3 md:mb-0 px-8 hover:opacity-60 flex items-center">
         Adicionar profile
         <span class="material-icons pl-2">add</span>  
       </button>
