@@ -8,21 +8,21 @@
       <h2 class="text-6xl text-white pt-14">Bem-vindo de volta ao Kenai</h2>
       <h4 class="text-4xl text-white py-5">Quem está usando?</h4>
       <div class="flex py-5">
-        <perfil-item v-for="perfil in perfil_list" :key="perfil.name" :pic="perfil.pic" :name="perfil.name"/>
+        <profile-item v-for="profile in profile_list" :key="profile.name" :pic="profile.pic" :name="profile.name"/>
       </div>
-      <button class="bg-gray-900 text-white py-3 px-8">Adicionar perfil</button>
+      <button class="bg-gray-900 text-white py-3 px-8">Adicionar profile</button>
     </main>
   </div>
 </template>
 
 <script>
-import PerfilItem from '~/components/PerfilItem.vue';
+import ProfileItem from '~/components/ProfileItem.vue';
 
 export default {
   name: 'IndexPage',
   data() {
     return {
-      perfil_list: [
+      profile_list: [
         { pic: 'https://exploringbits.com/wp-content/uploads/2021/11/anime-girl-pfp-2.jpg', name: 'Maria' },
         { pic: 'https://exploringbits.com/wp-content/uploads/2021/11/anime-girl-pfp-2.jpg', name: 'Sofia' },
         { pic: 'https://exploringbits.com/wp-content/uploads/2021/11/anime-girl-pfp-2.jpg', name: 'Leonardo' },
@@ -31,7 +31,7 @@ export default {
     }
   },
   components: {
-    PerfilItem
+    ProfileItem
   },
   mounted() {
     let time = new Date();
