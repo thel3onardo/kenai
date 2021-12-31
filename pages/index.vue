@@ -47,13 +47,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.gradient-color {
-  background: linear-gradient(260deg, #FF267A, #FFA634);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
-</style>
