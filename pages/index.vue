@@ -10,7 +10,10 @@
       <div class="flex py-5">
         <profile-item v-for="profile in profile_list" :key="profile.name" :pic="profile.pic" :name="profile.name"/>
       </div>
-      <button class="bg-gray-900 text-white py-3 px-8">Adicionar profile</button>
+      <button class="bg-gray-900 text-white py-3 px-8 hover:opacity-60 flex items-center">
+        Adicionar profile
+        <span class="material-icons pl-2">add</span>  
+      </button>
     </main>
   </div>
 </template>
@@ -25,7 +28,7 @@ export default {
       profile_list: [
         { pic: 'https://exploringbits.com/wp-content/uploads/2021/11/anime-girl-pfp-2.jpg', name: 'Maria' },
         { pic: 'https://exploringbits.com/wp-content/uploads/2021/11/anime-girl-pfp-2.jpg', name: 'Sofia' },
-        { pic: 'https://exploringbits.com/wp-content/uploads/2021/11/anime-girl-pfp-2.jpg', name: 'Leonardo' },
+        { pic: 'https://exploringbits.com/wp-content/uploads/2021/11/anime-girl-pfp-2.jpg', name: 'Leonardo oliveira' },
       ],
       current_time: ''
     }
@@ -52,4 +55,5 @@ export default {
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
+
 </style>
