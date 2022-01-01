@@ -9,33 +9,62 @@
         </header>
         <section class="flex flex-col relative z-20 px-8">
             <h2 class="text-white text-2xl">Populares</h2>
-            <div class="flex flex-row">
-                <!-- <home-movie-card :img_url="`https://image.tmdb.org/t/p/original/${popular_movie.poster_path}`" v-for="popular_movie in popular_movies" :key="popular_movie.id"/> -->
-                <div v-swiper="swiperOption" class="w-5/6 ml-auto relative" :loadtheme="false">
-                    <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <!-- Render original HTML in server, render Swiper in browser (client) -->
-                        <p>oi</p>
-
+            <div v-swiper="swiperOption" class="w-full flex" :loadtheme="false">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="popular_movie in popular_movies" :key="popular_movie.id">
+                        <home-movie-card :img_url="`https://image.tmdb.org/t/p/original/${popular_movie.poster_path}`"/>
                     </div>
-                    </div>
-                    <div class="swiper-button-prev" slot="button-prev"></div>
-                    <div class="swiper-button-next" slot="button-next"></div>
                 </div>
+                <div class="swiper-button-prev" slot="button-prev"></div>
+                <div class="swiper-button-next" slot="button-next"></div>
             </div>
         </section>
     </div>
 </template>
 
 <script>
-import HomeHeader from '../components/HomeHeader.vue'
-import HomeMovieCard from '../components/HomeMovieCard.vue'
-import { directive } from 'vue-awesome-swiper'
+import HomeHeader from '../components/HomeHeader.vue';
+import HomeMovieCard from '../components/HomeMovieCard.vue';
+import { directive } from 'vue-awesome-swiper';
+
 
 export default {
     name: 'HomePage',
     data() {
         return {
+            swiperOption: {
+                slidesPerView: 4,
+                spaceBetween: 0,
+                slidesPerGroup: 1,
+                loop: false,
+                loopFillGroupWithBlank: false,
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                breakpoints: {
+                    1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 10
+                    },
+                    768: {
+                    slidesPerView: 2,
+                    spaceBetween: 10
+                    },
+                    640: {
+                    slidesPerView: 2,
+                    spaceBetween: 10
+                    },
+                    320: {
+                    slidesPerView: 1,
+                    spaceBetween: 10
+                    }
+                }
+            },
             header_data: {
                 background: '',
                 title: '',
@@ -66,7 +95,7 @@ export default {
             try {
                 const movies = (await this.$axios.get(`https://api.themoviedb.org/3/trending/movies/week?api_key=732544339751a8291cc05e685efec0e9`)).data.results;
 
-                for (let x = 0; x < 4; x++) {
+                for (let x = 0; x < 11; x++) {
                     this.popular_movies.push(movies[x]);
                 }
                 return;
