@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex items-center justify-between text-white px-4 py-6">
-      <div>
+      <div class="px-4">
           <span class="text-4xl font-bold gradient-color">Kenai</span>
       </div>
       <div class="flex">
