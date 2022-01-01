@@ -1,18 +1,24 @@
 <template>
-    <div class="bg-gray-900">
-        <div class="home__bg-styles mx-auto" :style="{'background-image': `url('${header_data.background}')`}">
-            <header class="relative flex items-center z-20 px-8 pb-52 pt-28">
-                <home-header :title="header_data.title" :overview="header_data.overview" 
-                :genre="header_data.genre" 
-                :vote_counts="header_data.vote_counts"
-                :vote_average="header_data.vote_average"/>
-            </header>
-        </div>
+    <div class="bg-gray-900 relative">
+        <div class="home__bg-styles w-full absolute z-10" :style="{'background-image': `url('${header_data.background}')`}" style="height: 900px"></div>
+        <header class="relative flex items-center z-20 pb-48 pt-28 px-8">
+            <home-header :title="header_data.title" :overview="header_data.overview" 
+            :genre="header_data.genre" 
+            :vote_counts="header_data.vote_counts"
+            :vote_average="header_data.vote_average"/>
+        </header>
+        <section class="flex flex-col transform -translate-y-12 relative z-20 px-8">
+            <h2 class="text-white text-2xl">Populares</h2>
+            <div class="flex">
+                <home-movie-card :img_url="'https://image.tmdb.org/t/p/original/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg'"/>
+            </div>
+        </section>
     </div>
 </template>
 
 <script>
 import HomeHeader from '../components/HomeHeader.vue'
+import HomeMovieCard from '../components/HomeMovieCard.vue'
 
 export default {
     name: 'HomePage',
@@ -30,6 +36,7 @@ export default {
     },
     components: {
         HomeHeader,
+        HomeMovieCard
     },
     async fetch() {
         try {
