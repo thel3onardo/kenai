@@ -4,7 +4,7 @@
         <span class="text-yellow p-3 bg-gray-900">{{ genre }}</span>
     </div>
     <div class="flex py-3">
-        <span class="material-icons text-yellow md-18" 
+        <span class="material-icons text-yellow md-18 home__header__star-icon" 
         v-for="star in vote_average_stars" 
         :key="star" 
         v-bind:num-labels="vote_average_stars">start</span>

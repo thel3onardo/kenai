@@ -26,3 +26,21 @@
         background: linear-gradient(0deg, #181818d8, transparent);
     }
 }
+
+.home__section-title {
+    position: relative;
+
+    &:before {
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 70px;
+        bottom: 0;
+        background-color: #ffa334;
+        transform: translateY(3px)
+    }
+}
+
+.home__header__star-icon {
+    filter: drop-shadow(0px 0px 10px #ffa334);
+}
