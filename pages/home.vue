@@ -20,8 +20,8 @@
                 <div class="swiper-button-next" slot="button-next"></div>
             </div>
         </section>
-        <section class="flex flex-col relative z-20 px-8">
-            <h2 class="text-white text-3xl mb-10 home__section-title">Ação</h2>
+        <section class="flex flex-col relative z-20 px-8 py-14">
+            <h2 class="text-white text-3xl mb-10 home__section-title">Animação</h2>
             <div v-swiper:mySwiper2="swiperOption" class="w-full flex" :loadtheme="false">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" v-for="action_movie in action_movies" :key="action_movie.id">
@@ -48,8 +48,9 @@ export default {
             swiperOption: {
                 slidesPerView: 4,
                 spaceBetween: 30,
-                slidesPerGroup: 1,
+                slidesPerGroup: 2,
                 loop: false,
+                speed: 800,
                 loopFillGroupWithBlank: false,
                 pagination: {
                     el: ".swiper-pagination",
@@ -98,8 +99,8 @@ export default {
     },
     async fetch() {
         await this.getHeaderMovieData();
-        await this.getPopularMovies();
-        await this.getActionMovies();
+        await this.getAPIData('https://api.themoviedb.org/3/trending/movies/week?api_key=732544339751a8291cc05e685efec0e9', 15, this.popular_movies);
+        await this.getAPIData('https://api.themoviedb.org/3/discover/movie?api_key=732544339751a8291cc05e685efec0e9&with_genres=16', 15, this.action_movies);
     },
     directives: {
         swiper: directive
@@ -108,29 +109,16 @@ export default {
         generateRandomNumber(max_num) {
             return Math.trunc(Math.random() * max_num);
         },
-        async getPopularMovies() {
+        async getAPIData(url, max_results, variable) {
             try {
-                const movies = (await this.$axios.get(`https://api.themoviedb.org/3/trending/movies/week?api_key=732544339751a8291cc05e685efec0e9`)).data.results;
+                const response = (await this.$axios.get(`${url}`)).data.results;
 
-                for (let x = 0; x < 15; x++) {
-                    this.popular_movies.push(movies[x]);
+                for (let x = 0; x <= max_results; x++) {
+                    (variable).push(response[x]);
                 }
                 return;
-            } catch(err) {
-                return console.log(err);
-            }
-        },
-        async getActionMovies() {
-            try { 
-                const action_movies = (await this.$axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=732544339751a8291cc05e685efec0e9&with_genres=28`)).data.results;
-
-                for (let x = 0; x < 15; x++) {
-                    this.action_movies.push(action_movies[x])
-                }
-                console.log(this.action_movies);
-
-                return;
-            } catch(err) {
+            } 
+            catch(err) {
                 return console.log(err);
             }
         },
