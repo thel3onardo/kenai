@@ -14,7 +14,7 @@
     <h1 class="text-white text-5xl py-3">{{ title }}</h1>
     <p class="text-white w-3/4 py-3">{{ overview }}</p>
     <div class="py-4">
-        <button class="bg-yellow text-dark px-12 py-2 rounded">Assistir agora</button>
+        <button class="bg-yellow text-dark px-12 py-2 rounded hover:opacity-70">Assistir agora</button>
     </div>
   </div>
 </template>

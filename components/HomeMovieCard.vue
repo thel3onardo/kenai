@@ -1,6 +1,6 @@
 <template>
-  <div class="home__movie-card">
-      <img :src="img_url" class="w-full h-full" v-once>
+  <div class="home__movie-card" :style="{'height': `${height}px`, 'width': `${width}px`}">
+      <img :src="img_url" class="w-full h-full object-cover object-top" v-once>
   </div>
 </template>
 
@@ -10,6 +10,14 @@ export default {
     props: {
         img_url: {
             type: String,
+            required: true,
+        },
+        height: {
+            type: Number,
+            required: true,
+        },
+        width: {
+            type: Number,
             required: true,
         }
     }

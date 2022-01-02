@@ -1,6 +1,5 @@
 <template>
     <div class="relative">
-        <nav-bar class="absolute z-50"/>
-        <Nuxt/>
+        <Nuxt keep-alive :keep-alive-props="{ max: 10 }" />
     </div>
 </template>

@@ -33,7 +33,7 @@ export default {
       current_time: ''
     }
   },
-  layout: 'empty',
+  layout: 'default',
   components: {
     ProfileItem
   },

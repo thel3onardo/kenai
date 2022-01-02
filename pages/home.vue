@@ -1,5 +1,6 @@
 <template>
     <div class="bg-gray-900 relative">
+        <nav-bar class="absolute z-50"/>
         <div class="home__bg-styles w-full absolute z-10" :style="{'background-image': `url('${header_data.background}')`}" style="height: 900px"></div>
         <header class="relative flex items-center z-20 pb-48 pt-36 px-8">
             <home-header :title="header_data.title" :overview="header_data.overview" 
@@ -8,11 +9,23 @@
             :vote_average="header_data.vote_average"/>
         </header>
         <section class="flex flex-col relative z-20 px-8">
-            <h2 class="text-white text-2xl mb-10 home__section-title">Populares</h2>
-            <div v-swiper="swiperOption" class="w-full flex" :loadtheme="false">
+            <h2 class="text-white text-3xl mb-10 home__section-title">Populares</h2>
+            <div v-swiper:mySwiper="swiperOption" class="w-full flex" :loadtheme="false">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" v-for="popular_movie in popular_movies" :key="popular_movie.id">
-                        <home-movie-card :img_url="`https://image.tmdb.org/t/p/original/${popular_movie.poster_path}`"/>
+                        <home-movie-card :img_url="`https://image.tmdb.org/t/p/original/${popular_movie.poster_path}`" :height="440" :width="300"/>
+                    </div>
+                </div>
+                <div class="swiper-button-prev" slot="button-prev"></div>
+                <div class="swiper-button-next" slot="button-next"></div>
+            </div>
+        </section>
+        <section class="flex flex-col relative z-20 px-8">
+            <h2 class="text-white text-3xl mb-10 home__section-title">Ação</h2>
+            <div v-swiper:mySwiper2="swiperOption" class="w-full flex" :loadtheme="false">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="action_movie in action_movies" :key="action_movie.id">
+                        <home-movie-card :img_url="`https://image.tmdb.org/t/p/original${action_movie.poster_path}`" :height="440" :width="300"/>
                     </div>
                 </div>
                 <div class="swiper-button-prev" slot="button-prev"></div>
@@ -75,7 +88,8 @@ export default {
                 vote_counts: 0,
                 vote_average: 0,
             },
-            popular_movies: []
+            popular_movies: [],
+            action_movies: []
         }
     },
     components: {
@@ -85,6 +99,7 @@ export default {
     async fetch() {
         await this.getHeaderMovieData();
         await this.getPopularMovies();
+        await this.getActionMovies();
     },
     directives: {
         swiper: directive
@@ -97,9 +112,23 @@ export default {
             try {
                 const movies = (await this.$axios.get(`https://api.themoviedb.org/3/trending/movies/week?api_key=732544339751a8291cc05e685efec0e9`)).data.results;
 
-                for (let x = 0; x < 11; x++) {
+                for (let x = 0; x < 15; x++) {
                     this.popular_movies.push(movies[x]);
                 }
+                return;
+            } catch(err) {
+                return console.log(err);
+            }
+        },
+        async getActionMovies() {
+            try { 
+                const action_movies = (await this.$axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=732544339751a8291cc05e685efec0e9&with_genres=28`)).data.results;
+
+                for (let x = 0; x < 15; x++) {
+                    this.action_movies.push(action_movies[x])
+                }
+                console.log(this.action_movies);
+
                 return;
             } catch(err) {
                 return console.log(err);
@@ -122,7 +151,7 @@ export default {
             } catch(err) {
                 return console.log(err)
             }
-        }
+        },
     }
 }
 </script>
