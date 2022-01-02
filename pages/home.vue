@@ -21,7 +21,7 @@
             </div>
         </section>
         <section class="flex flex-col relative z-20 px-8 py-14">
-            <h2 class="text-white text-3xl mb-10 home__section-title">Animação</h2>
+            <h2 class="text-white text-3xl mb-10 home__section-title">Animações</h2>
             <div v-swiper:mySwiper2="swiperOption" class="w-full flex" :loadtheme="false">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" v-for="action_movie in action_movies" :key="action_movie.id">
