@@ -1,19 +1,19 @@
 <template>
     <div class="bg-gray-900 relative">
         <nav-bar class="absolute z-50"/>
-        <div class="home__bg-styles w-full absolute z-10" :style="{'background-image': `url('${header_data.background}')`}" style="height: 900px"></div>
+        <div class="catalog__bg-styles w-full absolute z-10" :style="{'background-image': `url('${header_data.background}')`}" style="height: 900px"></div>
         <header class="relative flex items-center z-20 pb-48 pt-36 px-8">
-            <home-header :title="header_data.title" :overview="header_data.overview" 
+            <catalog-header :title="header_data.title" :overview="header_data.overview" 
             :genre="header_data.genre" 
             :vote_counts="header_data.vote_counts"
             :vote_average="header_data.vote_average"/>
         </header>
         <section class="flex flex-col relative z-20 px-8">
-            <h2 class="text-white text-3xl mb-10 home__section-title">Populares</h2>
+            <h2 class="text-white text-3xl mb-10 catalog__section-title">Populares</h2>
             <div v-swiper:mySwiper="swiperOption" class="w-full flex" :loadtheme="false">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" v-for="popular_movie in popular_movies" :key="popular_movie.id">
-                        <home-movie-card :img_url="`https://image.tmdb.org/t/p/original/${popular_movie.poster_path}`" :height="440" :width="300"/>
+                        <catalog-movie-card :img_url="`https://image.tmdb.org/t/p/original/${popular_movie.poster_path}`" :height="440" :width="300"/>
                     </div>
                 </div>
                 <div class="swiper-button-prev" slot="button-prev"></div>
@@ -21,11 +21,11 @@
             </div>
         </section>
         <section class="flex flex-col relative z-20 px-8 py-14">
-            <h2 class="text-white text-3xl mb-10 home__section-title">Animações</h2>
+            <h2 class="text-white text-3xl mb-10 catalog__section-title">Animações</h2>
             <div v-swiper:mySwiper2="swiperOption" class="w-full flex" :loadtheme="false">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" v-for="action_movie in action_movies" :key="action_movie.id">
-                        <home-movie-card :img_url="`https://image.tmdb.org/t/p/original${action_movie.poster_path}`" :height="440" :width="300"/>
+                        <catalog-movie-card :img_url="`https://image.tmdb.org/t/p/original${action_movie.poster_path}`" :height="440" :width="300"/>
                     </div>
                 </div>
                 <div class="swiper-button-prev" slot="button-prev"></div>
@@ -36,13 +36,13 @@
 </template>
 
 <script>
-import HomeHeader from '../components/HomeHeader.vue';
-import HomeMovieCard from '../components/HomeMovieCard.vue';
+import CatalogHeader from '../components/CatalogHeader.vue';
+import CatalogMovieCard from '../components/CatalogMovieCard.vue';
 import { directive } from 'vue-awesome-swiper';
 
 
 export default {
-    name: 'HomePage',
+    name: 'CatalogPage',
     data() {
         return {
             swiperOption: {
@@ -94,8 +94,8 @@ export default {
         }
     },
     components: {
-        HomeHeader,
-        HomeMovieCard
+        CatalogHeader,
+        CatalogMovieCard
     },
     async fetch() {
         await this.getHeaderMovieData();
@@ -131,7 +131,7 @@ export default {
                 this.header_data.background = `https://image.tmdb.org/t/p/original${header_movie.backdrop_path}`;
                 this.header_data.title = header_movie.title || header_movie.name;
                 this.header_data.overview = header_movie.overview;
-                this.header_data.genre = header_movie.genre_ids[0];
+                this.header_data.genre = header_movie.genre_ids;
                 this.header_data.vote_counts = header_movie.vote_count;
                 this.header_data.vote_average = header_movie.vote_average;
 

@@ -1,4 +1,4 @@
-.home__bg-styles {
+.catalog__bg-styles {
     background-position: top;
     background-size: cover;
     // background-size: 100% 100%; //width and height of bg image.
@@ -13,7 +13,7 @@
     }
 }
 
-.home__movie-card {
+.catalog__movie-card {
     position: relative;
 
     &:before { 
@@ -25,7 +25,7 @@
     }
 }
 
-.home__section-title {
+.catalog__section-title {
     position: relative;
 
     &:before {
@@ -39,6 +39,6 @@
     }
 }
 
-.home__header__star-icon {
+.catalog__header__star-icon {
     filter: drop-shadow(0px 0px 10px #ffa334);
 }

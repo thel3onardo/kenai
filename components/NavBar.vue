@@ -4,7 +4,7 @@
           <span class="text-4xl font-bold gradient-color">Kenai</span>
       </div>
       <div class="flex">
-          <nav-bar-search class="px-6"/>
+          <nav-bar-search class="px-6" v-if="search_enabled"/>
           <Nuxt-link to="/home" class="px-6">Início</Nuxt-link>
           <Nuxt-link to="/home" class="px-6">Minha lista</Nuxt-link>
           <nav-bar-notifications class="px-6"/>
@@ -20,6 +20,12 @@ import NavBarSearch from './NavBarSearch.vue'
 
 export default {
   components: { NavBarSearch, NavBarNotifications, NavBarProfile },
-
+  props: {
+    search_enabled: {
+      type: Boolean,
+      default: true,
+      required: false
+    }
+  }
 }
 </script>

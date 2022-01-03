@@ -1,0 +1,8 @@
+.search__input {
+    transition: border-color .5s ease;
+    border: 1px solid transparent;
+    
+    &:focus {
+        border-color: #ffa43450;
+    }
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col items-center px-14 border-1">
-      <Nuxt-link to="/home">
+      <Nuxt-link to="/catalog">
         <div class="w-44 h-44 rounded-full overflow-hidden flex justify-center items-center relative z-20 group" @mouseover="iconSettingsVisible = true" @mouseleave="iconSettingsVisible = false">
             <img :src="pic" class="group-hover:opacity-50 transition cursor-pointer">
             <transition name="fade" appear>

@@ -53,6 +53,8 @@ export default {
     },
   },
 
+  loading: true,
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 

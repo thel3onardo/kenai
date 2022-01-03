@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col w-2/4">
-    <div class="py-3">
-        <span class="text-yellow p-3 bg-gray-900">{{ genre }}</span>
+    <div class="py-4">
+        <span class="text-yellow text-sm px-3 py-2 mr-3 font-medium bg-gray-900" v-for="genre in genres_names" :key="genre">{{ genre.name }}</span>
     </div>
     <div class="flex py-3">
         <span class="material-icons text-yellow md-18 home__header__star-icon" 
@@ -25,11 +25,29 @@ export default {
     data() {
         return {
             vote_average_stars: this.calculateStarsAmount(this.vote_average),
+            genres_names: [],
+        }
+    },
+    async created () {
+        try {
+            const genres_from_api = (await this.$axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=732544339751a8291cc05e685efec0e9&language=en-US`)).data.genres;
+
+            this.genre.forEach((genre_id) => {
+                const genre_found = genres_from_api.find((el) => el.id === genre_id);
+                
+                if (genre_found) return this.genres_names.push(genre_found);
+                return;
+            });
+
+            console.log(this.genres_names)
+        } 
+        catch(err) {
+            return console.log(err);
         }
     },
     props: {
         genre: {
-            type: Number,
+            type: Array,
             required: false,
         },
         title: {
