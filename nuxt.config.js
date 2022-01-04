@@ -19,6 +19,8 @@ export default {
     { src: '~/plugins/vue-awesome-swiper', mode: 'client', ssr: false }
   ],
 
+  ssr: true,
+
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -53,7 +55,10 @@ export default {
     },
   },
 
-  loading: true,
+  loading: {
+    color: '#ffa334',
+    height: '5px'
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

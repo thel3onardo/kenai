@@ -1,14 +1,29 @@
 <template>
-    <div class="half-circle-spinner">
-        <div class="circle circle-1"></div>
-        <div class="circle circle-2"></div>
+    <div class="h-screen w-screen bg-gray-900" v-if="loading">
+        <div class="half-circle-spinner">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Spinner',
-    layout: 'empty'
+    name: 'Loading',
+    layout: 'empty',
+    data() {
+        return {
+            loading: false,
+        }
+    },
+    methods: {
+        start () {
+            this.loading = true;
+        },
+        finish () {
+            this.loading = false;
+        }
+    }
 }
 </script>
 

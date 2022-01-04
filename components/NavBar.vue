@@ -5,8 +5,8 @@
       </div>
       <div class="flex">
           <nav-bar-search class="px-6" v-if="search_enabled"/>
-          <Nuxt-link to="/home" class="px-6">Início</Nuxt-link>
-          <Nuxt-link to="/home" class="px-6">Minha lista</Nuxt-link>
+          <Nuxt-link to="/catalog" class="px-6">Início</Nuxt-link>
+          <Nuxt-link to="/search/wqdkqwdikwk" class="px-6">Minha lista</Nuxt-link>
           <nav-bar-notifications class="px-6"/>
           <nav-bar-profile class="px-6"/>
       </div>

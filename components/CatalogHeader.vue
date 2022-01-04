@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col w-2/4">
     <div class="py-4">
-        <span class="text-yellow text-sm px-3 py-2 mr-3 font-medium bg-gray-900" v-for="genre in genres_names" :key="genre">{{ genre.name }}</span>
+        <Nuxt-link :to="`/search/${genre.id}`" class="text-yellow text-sm px-3 py-2 mr-3 font-medium bg-gray-900 hover:cursor-pointer" v-for="genre in genres_names" :key="genre">{{ genre.name }}</Nuxt-link>
     </div>
     <div class="flex py-3">
         <span class="material-icons text-yellow md-18 home__header__star-icon" 
