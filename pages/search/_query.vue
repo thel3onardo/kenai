@@ -24,12 +24,17 @@ export default {
     NavBar,
     Spinner,
   },
-  created() {
-    const param = this.$route.params.id;
-    const response = (this.$axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=732544339751a8291cc05e685efec0e9&with_genres=${param}`)).then((res) => res.data);
-    console.log(response);
-
-    return 
+  async created() {
+    const params = this.$route.params.query
+    console.log(params);
+    try {
+      const response = (await this.$axios.get(`https://api.themoviedb.org/3/search/movie?query=${params}&api_key=732544339751a8291cc05e685efec0e9&language=en-US&page=1&include_adult=false`)).data.results;
+      console.log(response);
+      return this.search_content = response; 
+    } 
+    catch(err) {
+      return console.log(err);
+    }
     // return this.search_content = response.map((el) => el);
   }
   // async asyncData({ params, $axios }) {
