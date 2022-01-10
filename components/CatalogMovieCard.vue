@@ -1,7 +1,7 @@
 <template>
   <div class="home__movie-card" :style="{'height': `${height}px`, 'width': `${width}px`}">
-      <img :src="img_url" class="w-full h-full object-cover object-top img" v-once v-show="true">
       <div v-if="loading" class="skeleton"></div>
+    <img :src="img_url" class="w-full h-full object-cover object-top rounded" v-once v-else>
   </div>
 </template>
 
@@ -12,9 +12,6 @@ export default {
         return {
             loading: true,
         }
-    },
-    created() {
-        this.loading = false;
     },
     props: {
         img_url: {
@@ -29,12 +26,18 @@ export default {
             type: Number,
             required: true,
         },
+        loading: {
+            type: Boolean,
+            required: true,
+        }
     },
 }
 </script>
 <style scoped>
     .skeleton {
-        background-color: gray;
+        display: inline-block;
+        vertical-align: middle;
+        background-color: #DDDBDD;
         width: 100%;
         height: 100%;
     }

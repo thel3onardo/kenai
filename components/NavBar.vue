@@ -1,14 +1,50 @@
 <template>
-  <div class="w-full flex items-center justify-between text-white px-4 py-6">
+  <div class="w-full flex items-center justify-between text-white px-4 py-6 relative">
       <div class="px-4">
-          <span class="text-4xl font-bold gradient-color">Kenai</span>
+          <Nuxt-link to="/catalog" class="text-4xl font-bold gradient-color">Kenai</Nuxt-link>
       </div>
-      <div class="flex">
+      <div class="hidden sm:flex">
           <nav-bar-search class="px-6" v-if="search_enabled"/>
           <Nuxt-link to="/catalog" class="px-6">Início</Nuxt-link>
           <Nuxt-link to="/search/wqdkqwdikwk" class="px-6">Minha lista</Nuxt-link>
           <nav-bar-notifications class="px-6"/>
           <nav-bar-profile class="px-6"/>
+      </div>
+      <div class="block sm:hidden pr-4" @click="mobileMenuVisible = true">
+        <span class="material-icons">menu</span>
+      </div>
+      <div class="h-screen w-full absolute top-0 left-0 bg-gray-900 bg-opacity-75 flex justify-end" v-if="mobileMenuVisible">
+        <div class="bg-gray-900 w-3/4 flex flex-col px-5 py-8">
+          <div class="self-end pb-5">
+            <span class="material-icons" style="font-size: 2rem" @click="mobileMenuVisible =  false">close</span>
+          </div>
+          <ul>
+            <li class="pb-8">
+              <NuxtLink to="/" class="flex items-center">
+                <span class="material-icons pr-5">home</span>
+                <h3 class="font-normal">Home</h3>
+              </NuxtLink>
+            </li>
+            <li class="pb-8">
+              <NuxtLink to="/" class="flex items-center w-full">
+                <span class="material-icons pr-5">format_list_bulleted</span>
+                <h3 class="font-normal">My List</h3>
+              </NuxtLink>
+            </li>
+            <li class="pb-8">
+              <NuxtLink to="/" class="flex items-center">
+                <span class="material-icons pr-5">notifications_none</span>
+                <h3 class="font-normal">Notifications</h3>
+              </NuxtLink>
+            </li>
+            <li class="pb-8">
+              <NuxtLink to="/" class="flex items-center">
+                <span class="material-icons pr-5">perm_identity</span>
+                <h3 class="font-normal">Account</h3>
+              </NuxtLink>
+            </li>
+          </ul>
+        </div>
       </div>
   </div>
 </template>
@@ -19,12 +55,26 @@ import NavBarProfile from './NavBarProfile.vue'
 import NavBarSearch from './NavBarSearch.vue'
 
 export default {
-  components: { NavBarSearch, NavBarNotifications, NavBarProfile },
+  data() {
+    return {
+      mobileMenuVisible: false,
+    }
+  },
   props: {
     search_enabled: {
       type: Boolean,
       default: true,
       required: false
+    }
+  },
+  components: { NavBarSearch, NavBarNotifications, NavBarProfile },
+  watch: {
+    mobileMenuVisible: function(newValue, oldValue) {
+      if (newValue) {
+        return document.body.style.overflow = 'hidden';
+      } else {
+        return document.body.style.overflow = 'visible';
+      }
     }
   }
 }

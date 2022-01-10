@@ -2,10 +2,10 @@
   <div class="bg-gray-900 min-h-screen">
     <nav-bar :search_enabled="false"/>
     <form class="w-full px-8">
-      <input type="text" class="px-5 py-2 w-full bg-gray-400 rounded focus:outline-none search__input text-white">
+      <input type="text" placeholder="Search for a movie, TV show, etc" class="px-5 py-2 w-full bg-gray-400 rounded focus:outline-none search__input text-white">
     </form>
-    <div class="grid grid-rows-1 grid-cols-4 gap-y-10 justify-items-center">
-      <catalog-movie-card :height="350" :width="250" :img_url="`https://image.tmdb.org/t/p/original/${search_item.poster_path}`" v-for="search_item in search_content" :key="search_item.id"/>
+    <div class="grid grid-rows-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-14 justify-items-center py-5">
+      <catalog-movie-card :height="350" :width="250" :img_url="`https://image.tmdb.org/t/p/original/${search_item.poster_path}`" v-for="search_item in search_content" :key="search_item.id" :loading="false" @load="setLoadingToFalse"/>
     </div>
   </div>
 </template>
@@ -36,6 +36,11 @@ export default {
       return console.log(err);
     }
     // return this.search_content = response.map((el) => el);
+  },
+  methods: {
+    setLoadingToFalse(e) {
+      return console.log(e);
+    }
   }
   // async asyncData({ params, $axios }) {
   //   console.log(params);
