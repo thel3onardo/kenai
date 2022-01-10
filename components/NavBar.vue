@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex items-center justify-between text-white px-4 py-6 relative">
+  <div class="w-full flex items-center justify-between text-white px-4 py-6 bg-transparent">
       <div class="px-4">
           <Nuxt-link to="/catalog" class="text-4xl font-bold gradient-color">Kenai</Nuxt-link>
       </div>
