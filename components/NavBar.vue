@@ -14,6 +14,7 @@
         <span class="material-icons">menu</span>
       </div>
       <div class="h-screen w-full fixed top-0 left-0 bg-gray-900 bg-opacity-75 flex justify-end" v-if="mobileMenuVisible">
+        <transition name="slideInRight" appear>
         <div class="bg-gray-900 w-3/4 flex flex-col px-5 py-8">
           <div class="self-end pb-5">
             <span class="material-icons" style="font-size: 2rem" @click="mobileMenuVisible =  false">close</span>
@@ -45,6 +46,7 @@
             </li>
           </ul>
         </div>
+        </transition>
       </div>
   </div>
 </template>
@@ -70,3 +72,12 @@ export default {
   components: { NavBarSearch, NavBarNotifications, NavBarProfile },
 }
 </script>
+<style lang="scss" scoped>
+.slideInRight-enter-active, .slideInRight-leave-active {
+  transition: width .5s ease;
+}
+.slideInRight-enter, .slideInRight-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  width: 0;
+}
+
+</style>
