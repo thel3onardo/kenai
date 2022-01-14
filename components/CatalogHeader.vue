@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col w-2/4">
+  <div class="flex flex-col w-full md:w-3/4 lg:w-2/4">
     <div class="py-4">
         <Nuxt-link :to="`/search/${genre.id}`" class="text-yellow text-sm px-3 py-2 mr-3 font-medium bg-gray-900 hover:cursor-pointer" v-for="genre in genres_names" :key="genre">{{ genre.name }}</Nuxt-link>
     </div>
@@ -12,7 +12,7 @@
         <span class="text-white text-bold 12dp">{{ vote_counts }} votes</span>
     </div>
     <h1 class="text-white text-5xl py-3">{{ title }}</h1>
-    <p class="text-white w-3/4 py-3">{{ overview }}</p>
+    <p class="text-white w-full md:w-3/4 py-3">{{ overview }}</p>
     <div class="py-4">
         <button class="bg-yellow text-dark px-12 py-2 rounded hover:opacity-70">Assistir agora</button>
     </div>

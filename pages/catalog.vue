@@ -12,7 +12,7 @@
             <h2 class="text-white text-3xl mb-10 catalog__section-title">Populares</h2>
             <div v-swiper:mySwiper="swiperOption" class="w-full flex" :loadtheme="false">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" v-for="popular_movie in popular_movies" :key="popular_movie.id">
+                    <div class="swiper-slide flex justify-center" v-for="popular_movie in popular_movies" :key="popular_movie.id">
                         <catalog-movie-card :img_url="`https://image.tmdb.org/t/p/original/${popular_movie.poster_path}`" :height="440" :width="300"/>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
             <h2 class="text-white text-3xl mb-10 catalog__section-title">Animações</h2>
             <div v-swiper:mySwiper2="swiperOption" class="w-full flex" :loadtheme="false">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" v-for="action_movie in action_movies" :key="action_movie.id">
+                    <div class="swiper-slide flex justify-center" v-for="action_movie in action_movies" :key="action_movie.id">
                         <catalog-movie-card :img_url="`https://image.tmdb.org/t/p/original${action_movie.poster_path}`" :height="440" :width="300"/>
                     </div>
                 </div>
@@ -61,23 +61,30 @@ export default {
                     prevEl: ".swiper-button-prev",
                 },
                 breakpoints: {
+                    1366: {
+                        slidesPerView: 4,
+                        spaceBetween: 10,
+                        slidesPerGroup: 2,
+                    },
                     1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 10
+                    slidesPerView: 3,
+                    spaceBetween: 10,
+                    slidesPerGroup: 2,
                     },
                     768: {
-                    slidesPerView: 3,
-                    spaceBetween: 10
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                    slidesPerGroup: 1,
                     },
                     640: {
                     slidesPerView: 2,
                     spaceBetween: 10,
-                    centeredSlides: false,
+                    slidesPerGroup: 1,
                     },
                     320: {
                     slidesPerView: 1,
                     spaceBetween: 10,
-                    centeredSlides: true,
+                    slidesPerGroup: 1
                     }
                 }
             },
