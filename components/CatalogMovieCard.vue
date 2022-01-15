@@ -1,6 +1,6 @@
 <template>
   <div class="home__movie-card" :style="{'height': `${height}px`, 'width': `${width}px`}">
-      <div v-if="loading" class="skeleton"></div>
+    <div v-if="loading" class="skeleton"></div>
     <img :src="img_url" class="w-full h-full object-cover object-top rounded" v-once v-else>
   </div>
 </template>
