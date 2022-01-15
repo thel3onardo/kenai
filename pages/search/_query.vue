@@ -4,9 +4,11 @@
     <form class="w-full px-8" @submit.prevent="searchContent">
       <input type="text" v-model="searchInput" placeholder="Search for a movie, TV show, etc" class="px-5 py-2 w-full bg-gray-400 rounded focus:outline-none search__input text-white">
     </form>
-    <div v-if="catalogContent.length === 0 && !this.loading" class="w-full flex justify-center py-52">
-      <h1 class="text-white">Nenhum resultado encontrado</h1>
+    <div class="w-full flex justify-center py-52" v-if="loading">
       <spinner/>
+    </div>
+    <div v-if="catalogContent.length === 0 && !loading" class="w-full flex justify-center py-52">
+      <h1 class="text-white">Nenhum resultado encontrado</h1>
     </div>
     <div class="grid grid-rows-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-14 justify-items-center py-5">
       <catalog-movie-card :height="350" :width="250" :img_url="`https://image.tmdb.org/t/p/original/${search_item.poster_path}`" v-for="search_item in catalogContent" :key="search_item.id" :loading="false" @load="setLoadingToFalse"/>
@@ -16,7 +18,7 @@
 
 <script>
 import NavBar from '~/components/NavBar.vue';
-import Spinner from '~/components/Loading.vue';
+import Spinner from '~/components/Spinner.vue';
 
 export default {
   data() {
@@ -32,13 +34,14 @@ export default {
   },
   async created() {
     const params = this.$route.params.query
-    console.log(params);
+
     try {
       this.loading = true;
       const response = (await this.$axios.get(`https://api.themoviedb.org/3/search/movie?query=${params}&api_key=732544339751a8291cc05e685efec0e9&language=en-US&page=1&include_adult=false`)).data.results;
-      console.log(response);
+
       this.catalogContent = response;
-      return this.loading = false; 
+
+      return this.loading = false;
     } 
     catch(err) {
       this.loading = false;
@@ -47,11 +50,9 @@ export default {
     // return this.searchContent = response.map((el) => el);
   },
   methods: {
-    setLoadingToFalse(e) {
-      return console.log(e);
-    },
     searchContent() {
-      console.log(this.$router);
+      if (this.$route.params.query === this.searchInput) return;
+      
       return this.$router.replace(this.searchInput);
     }
   }

@@ -59,6 +59,8 @@ export default {
     color: '#ffa334',
     height: '5px'
   },
+
+  ssr: true,
   
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

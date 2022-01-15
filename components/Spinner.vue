@@ -1,29 +1,14 @@
 <template>
-    <div class="h-screen w-screen bg-gray-900" v-if="loading">
-        <div class="half-circle-spinner">
-            <div class="circle circle-1"></div>
-            <div class="circle circle-2"></div>
-        </div>
+    <div class="half-circle-spinner">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Loading',
+    name: 'Spinner',
     layout: 'empty',
-    data() {
-        return {
-            loading: false,
-        }
-    },
-    methods: {
-        start () {
-            this.loading = true;
-        },
-        finish () {
-            this.loading = false;
-        }
-    }
 }
 </script>
 
@@ -50,12 +35,12 @@ export default {
 }
 
 .half-circle-spinner .circle.circle-1 {
-    border-top-color: #ff1d5e;
+    border-top-color: #FF267A;
     animation: half-circle-spinner-animation 1s infinite;
 }
 
 .half-circle-spinner .circle.circle-2 {
-    border-bottom-color: #ff1d5e;
+    border-bottom-color: #FFA634;
     animation: half-circle-spinner-animation 1s infinite alternate;
 }
 
