@@ -28,28 +28,10 @@
                 <span class="material-icons select-none" @click="mobileMenuVisible = false">close</span>
               </div>
               <ul>
-                <li class="pb-8">
-                  <NuxtLink to="/" class="flex items-center">
-                    <span class="material-icons pr-5">home</span>
-                    <h3 class="font-normal">Home</h3>
-                  </NuxtLink>
-                </li>
-                <li class="pb-8">
-                  <NuxtLink to="/" class="flex items-center w-full">
-                    <span class="material-icons pr-5">format_list_bulleted</span>
-                    <h3 class="font-normal">My List</h3>
-                  </NuxtLink>
-                </li>
-                <li class="pb-8">
-                  <NuxtLink to="/" class="flex items-center">
-                    <span class="material-icons pr-5">notifications_none</span>
-                    <h3 class="font-normal">Notifications</h3>
-                  </NuxtLink>
-                </li>
-                <li class="pb-8">
-                  <NuxtLink to="/" class="flex items-center">
-                    <span class="material-icons pr-5">perm_identity</span>
-                    <h3 class="font-normal">Account</h3>
+                <li class="pb-8" v-for="link in mobileLinks" :key="link.label">
+                  <NuxtLink :to="link.to" class="flex items-center">
+                    <span class="material-icons pr-5">{{ link.icon }}</span>
+                    <h3 class="font-normal">{{ link.label }}</h3>
                   </NuxtLink>
                 </li>
               </ul>
@@ -67,6 +49,12 @@ export default {
   data() {
     return {
       mobileMenuVisible: false,
+      mobileLinks: [
+        { to: '/', label: 'Home', icon: 'home' },
+        { to: '/', label: 'My list', icon: 'format_list_bulleted' },
+        { to: '/', label: 'Notifications', icon: 'notifications_none' },
+        { to: '/', label: 'Account', icon: 'perm_identity' }
+      ]
     }
   },
   components: { NavBarSearch, NavBarNotifications, NavBarProfile },
