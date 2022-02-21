@@ -4,8 +4,8 @@
             <div class="home__movie-card relative" :style="{'height': `${height}px`, 'width': `${width}px`}" @mouseover="cardHovered = true" @mouseleave="cardHovered = false">
                 <img :src="img_url" class="w-full h-full object-cover object-top rounded" v-once>
                 <div class="bg-black bg-opacity-75 text-white w-full h-full absolute top-0 p-5 flex flex-col justify-center items-center opacity-0 transition-opacity duration-500 hover:opacity-100">
-                    <h2 class="font-semibold text-1xl">{{ movie.title }}</h2>
-                    <p class="pt-3 text-sm line-clamp">{{ movie.overview }}</p>
+                    <h2 class="font-semibold text-1xl text-center">{{ movie.title }}</h2>
+                    <p class="pt-3 text-sm text-center line-clamp">{{ movie.overview }}</p>
                     <button class="bg-yellow text-black px-8 py-2 mt-4 rounded-md hover:bg-opacity-75" @click="modalOpened = true">See details</button>
                 </div>
             </div>

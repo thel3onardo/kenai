@@ -4,3 +4,11 @@
       <Nuxt />
   </div>
 </template>
+<script>
+  import NavBar from '../components/Navbar/NavBar.vue';
+  export default {
+    components: {
+      NavBar
+    }
+  }
+</script>
