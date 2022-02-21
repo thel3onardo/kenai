@@ -3,17 +3,16 @@
       <div class="px-4">
           <Nuxt-link to="/catalog" class="text-4xl font-bold gradient-color">Kenai</Nuxt-link>
       </div>
-
       <!-- > medium devices navbar -->
       <div class="hidden md:flex">
           <nav-bar-search class="px-6" />
           <Nuxt-link to="/catalog" class="px-6">Início</Nuxt-link>
-          <Nuxt-link to="/search/wqdkqwdikwk" class="px-6">Minha lista</Nuxt-link>
+          <Nuxt-link to="/mylist" class="px-6">Minha lista</Nuxt-link>
           <nav-bar-notifications class="px-6" />
           <nav-bar-profile class="px-6" />
       </div>
       <!-- small devices navbar -->
-      <div class="block md:hidden pr-4 flex items-center">
+      <div class="md:hidden pr-4 flex items-center">
         <nav-bar-search class="px-6" />
         <div class="cursor-pointer" @click="mobileMenuVisible = true">
           <span class="material-icons select-none">menu</span>

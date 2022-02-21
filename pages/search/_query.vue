@@ -4,20 +4,20 @@
     <form class="w-full px-8" @submit.prevent="searchContent">
       <input type="text" v-model="searchInput" placeholder="Search for a movie, TV show, etc" class="px-5 py-2 w-full bg-gray-400 rounded focus:outline-none search__input text-white">
     </form>
-    <div class="w-full flex justify-center py-52" v-if="loading">
+    <div class="w-full flex justify-center py-52" v-if="$fetchState.pending">
       <spinner/>
     </div>
-    <div v-if="catalogContent.length === 0 && !loading" class="w-full flex justify-center py-52">
+    <div v-if="catalogContent.length === 0" class="w-full flex justify-center py-52">
       <h1 class="text-white">Nenhum resultado encontrado</h1>
     </div>
-    <div class="grid grid-rows-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-14 justify-items-center py-5">
-      <catalog-movie-card :height="350" :width="250" :img_url="`https://image.tmdb.org/t/p/original/${search_item.poster_path}`" v-for="search_item in catalogContent" :key="search_item.id" :loading="false" @load="setLoadingToFalse"/>
+    <div class="grid grid-rows-1 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-14 justify-items-center py-5" v-if="!$fetchState.pending">
+      <catalog-movie-card :height="350" :width="250" :img_url="`https://image.tmdb.org/t/p/original/${search_item.poster_path}`" :movie="search_item" v-for="search_item in catalogContent" :key="search_item.id" :loading="false" @load="setLoadingToFalse"/>
     </div>
   </div>
 </template>
 
 <script>
-import NavBar from '~/components/NavBar.vue';
+import NavBar from '~/components/Navbar/NavBar.vue';
 import Spinner from '~/components/Spinner.vue';
 
 export default {
@@ -32,7 +32,7 @@ export default {
     NavBar,
     Spinner,
   },
-  async created() {
+  async fetch() {
     const params = this.$route.params.query
 
     try {
@@ -49,6 +49,7 @@ export default {
     }
     // return this.searchContent = response.map((el) => el);
   },
+  fetchOnServer: true,
   methods: {
     searchContent() {
       if (this.$route.params.query === this.searchInput) return;

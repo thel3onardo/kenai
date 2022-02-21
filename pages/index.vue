@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import ProfileItem from '~/components/ProfileItem.vue';
+import ProfileItem from '~/components/Profiles/ProfileItem.vue'
 
 export default {
   name: 'IndexPage',
