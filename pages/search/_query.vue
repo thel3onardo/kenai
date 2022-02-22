@@ -33,41 +33,35 @@ export default {
     Spinner,
   },
   async fetch() {
-    const params = this.$route.params.query
-
-    try {
-      this.loading = true;
-      const response = (await this.$axios.get(`https://api.themoviedb.org/3/search/movie?query=${params}&api_key=732544339751a8291cc05e685efec0e9&language=en-US&page=1&include_adult=false`)).data.results;
-
-      this.catalogContent = response;
-
-      return this.loading = false;
-    } 
-    catch(err) {
-      this.loading = false;
-      return console.log(err);
+    if (this.$route.query.s) {
+      this.getDataFromAPI('s', this.$route.query.s)
+    } else if (this.$route.query.genre) {
+      this.getDataFromAPI('genre', this.$route.query.genre)
     }
-    // return this.searchContent = response.map((el) => el);
   },
-  fetchOnServer: true,
+  fetchOnServer: false,
   methods: {
+    async getDataFromAPI(query_type, query_data) {
+      const url = (query_type === 's') 
+        ? `https://api.themoviedb.org/3/search/movie?query=${query_data}&api_key=732544339751a8291cc05e685efec0e9&language=en-US&page=1&include_adult=false`
+        : `https://api.themoviedb.org/3/discover/movie?api_key=732544339751a8291cc05e685efec0e9&with_genres=${query_data}`
+
+      try {
+        console.log('trying')
+        const res = await this.$axios.get(`${url}`);
+        
+        if (res.status === 200) {
+          this.catalogContent = res.data.results;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
     searchContent() {
       if (this.$route.params.query === this.searchInput) return;
       
       return this.$router.replace(this.searchInput);
     }
   }
-  // async asyncData({ params, $axios }) {
-  //   console.log(params);
-  //   return;
-    // const ids = (await $axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=732544339751a8291cc05e685efec0e9&language=en-US`)).data.genres;
-    // console.log(ids);
-
-    // const searchContent = ids.find((el) => el.id == Number(params.id)) ?
-    //   (await $axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=732544339751a8291cc05e685efec0e9&with_genres=${params.id}`)).data.results
-    //   :
-    //   (await $axios.get(`https://api.themoviedb.org/3/search/movie?api_key=732544339751a8291cc05e685efec0e9&query=${params.id}`))
-
-    // return { searchContent }
 }
 </script>
