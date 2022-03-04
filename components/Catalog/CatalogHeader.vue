@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col w-full md:w-3/4 lg:w-2/4">
     <div class="py-4 flex flex-wrap">
-        <Nuxt-link :to="`/search/genres/${genre.id}`" class="text-yellow text-sm px-3 py-2 mr-3 mt-3 font-medium bg-gray-900 hover:cursor-pointer" v-for="genre in genres_names" :key="genre">{{ genre.name }}</Nuxt-link>
+        <Nuxt-link :to="`/search/?genre=${genre.id}`" class="text-yellow text-sm px-3 py-2 mr-3 mt-3 font-medium bg-gray-900 hover:cursor-pointer" v-for="genre in genres_names" :key="genre">{{ genre.name }}</Nuxt-link>
     </div>
     <div class="flex py-3">
         <span class="material-icons text-yellow md-18 home__header__star-icon" 

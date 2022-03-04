@@ -47,20 +47,18 @@ export default {
         : `https://api.themoviedb.org/3/discover/movie?api_key=732544339751a8291cc05e685efec0e9&with_genres=${query_data}`
 
       try {
-        console.log('trying')
         const res = await this.$axios.get(`${url}`);
         
-        if (res.status === 200) {
-          this.catalogContent = res.data.results;
-        }
+        if (res.status === 200) return this.catalogContent = res.data.results;
       } catch (err) {
         console.error(err);
       }
     },
     searchContent() {
-      if (this.$route.params.query === this.searchInput) return;
+      if (this.$route.query.s === this.searchInput) return;
       
-      return this.$router.replace(this.searchInput);
+      this.getDataFromAPI('s', this.searchInput);
+      return this.$router.replace(`?s=${this.searchInput}`);
     }
   }
 }
