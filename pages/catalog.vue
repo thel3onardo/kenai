@@ -4,8 +4,8 @@
         <div v-if="!$fetchState.pending">
             <div class="catalog__bg-styles w-full absolute z-10" :style="{'background-image': `url('${header_data.background}')`}" style="height: 900px"></div>
             <header class="relative flex items-center z-20 pb-48 pt-36 px-8">
-                <catalog-header :title="header_data.title" :overview="header_data.overview" 
-                :genre="header_data.genre" 
+                <catalog-header :title="header_data.title" :overview="header_data.overview"
+                :genre="header_data.genre"
                 :vote_counts="header_data.vote_counts"
                 :vote_average="header_data.vote_average"/>
             </header>
@@ -40,7 +40,7 @@
 <script>
 import CatalogHeader from '../components/Catalog/CatalogHeader.vue';
 import CatalogMovieCard from '../components/Catalog/CatalogMovieCard.vue';
-import NavBar from '~/components/Navbar/NavBar.vue'; 
+import NavBar from '~/components/Navbar/NavBar.vue';
 import { directive } from 'vue-awesome-swiper';
 
 export default {
@@ -128,7 +128,7 @@ export default {
                     (variable).push(response[x]);
                 }
                 return;
-            } 
+            }
             catch(err) {
                 return console.log(err);
             }
