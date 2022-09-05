@@ -27,6 +27,7 @@
           </button>
         </div>
       </div>
+
       <catalog-movie-modal
         :movie="movie"
         v-if="modalOpened"
