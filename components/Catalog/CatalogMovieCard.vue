@@ -8,13 +8,13 @@
         <nuxt-img
           :src="img_url"
           class="w-full h-full object-cover object-top rounded"
-          loading="lazy"
+          :class="{ hidden: loading }"
           quality="20"
           @load="loading = false"
         />
         <div
           v-if="loading"
-          class="absolute w-full h-full bg-red-500 top-0 z-20"
+          class="absolute w-full h-full skeleton top-0 z-20"
         ></div>
         <div
           class="bg-black bg-opacity-75 text-white w-full h-full absolute top-0 p-5 flex flex-col justify-center items-center opacity-0 transition-opacity duration-500 hover:opacity-100"
@@ -78,14 +78,36 @@ export default {
   },
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
 /* stylelint-disable */
 .skeleton {
   display: inline-block;
-  vertical-align: middle;
-  background-color: #dddbdd;
-  width: 100%;
-  height: 100%;
+  overflow: hidden;
+  background-color: rgb(168, 168, 168, 0.2);
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+      90deg,
+      rgba(#38383e, 0) 0,
+      rgba(#38383e, 0.2) 20%,
+      rgba(#38383e, 0.5) 60%,
+      rgba(#38383e, 0)
+    );
+    animation: shimmer 3s infinite;
+    content: '';
+  }
+
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
 }
 
 .line-clamp {
