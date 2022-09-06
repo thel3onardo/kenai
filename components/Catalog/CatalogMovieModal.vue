@@ -63,9 +63,6 @@ export default {
       required: true,
     },
   },
-  mounted() {
-    return console.log(this.movie)
-  },
   computed: {
     voteAverageRounded() {
       return Math.round(this.movie.vote_average)

@@ -2,12 +2,10 @@ import Vue from 'vue'
 
 Vue.directive('click-out', {
   bind: function (el, binding, vnode) {
-    console.log('bind executed')
     el.clickOutsideEvent = function (event) {
       // here I check that click was outside the el and his children
       if (!(el == event.target || el.contains(event.target))) {
         // and if it did, call method provided in attribute value
-        console.log('it was outside')
         vnode.context[binding.expression](event)
       }
     }

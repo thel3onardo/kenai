@@ -5,7 +5,7 @@
         :to="`/search/?genre=${genre.id}`"
         class="text-yellow text-sm px-3 py-2 mr-3 mt-3 font-medium bg-gray-900 hover:cursor-pointer"
         v-for="genre in genres_names"
-        :key="genre"
+        :key="genre.id"
         >{{ genre.name }}</Nuxt-link
       >
     </div>
@@ -52,8 +52,6 @@ export default {
 
         if (genre_found) this.genres_names.push(genre_found)
       })
-
-      console.log(this.genres_names)
     } catch (err) {
       return console.log(err)
     }

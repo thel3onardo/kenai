@@ -76,11 +76,6 @@ export default {
       required: true,
     },
   },
-  methods: {
-    teste() {
-      console.log('laoded')
-    },
-  },
 }
 </script>
 <style scoped>
