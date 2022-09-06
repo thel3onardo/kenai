@@ -30,8 +30,6 @@
           :movie="search_item"
           v-for="search_item in catalogContent"
           :key="search_item.id"
-          :loading="false"
-          @load="setLoadingToFalse"
         />
       </div>
     </div>

@@ -1,5 +1,5 @@
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
+  // Glo'b'al page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Kenai',
     meta: [
@@ -17,7 +17,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/vue-awesome-swiper', mode: 'client', ssr: false },
-    { src: '~/directives/clickOutside.js' }
+    { src: '~/directives/clickOutside.js' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -38,7 +38,8 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     //material design icons
-    'nuxt-material-design-icons'
+    'nuxt-material-design-icons',
+    '@nuxt/image',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -56,11 +57,11 @@ export default {
 
   loading: {
     color: '#ffa334',
-    height: '5px'
+    height: '5px',
   },
 
   ssr: true,
-  
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 }

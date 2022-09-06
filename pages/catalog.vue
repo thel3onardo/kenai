@@ -149,7 +149,7 @@ export default {
   async fetch() {
     await this.getHeaderMovieData()
     await this.getAPIData(
-      'https://api.themoviedb.org/3/trending/movies/week?api_key=732544339751a8291cc05e685efec0e9',
+      'https://api.themoviedb.org/3/trending/all/week?api_key=732544339751a8291cc05e685efec0e9',
       15,
       this.popular_movies
     )

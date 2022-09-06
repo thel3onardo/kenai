@@ -4,14 +4,18 @@
       <div
         class="home__movie-card relative"
         :style="{ height: `${height}px`, width: `${width}px` }"
-        @mouseover="cardHovered = true"
-        @mouseleave="cardHovered = false"
       >
-        <img
+        <nuxt-img
           :src="img_url"
           class="w-full h-full object-cover object-top rounded"
-          v-once
+          loading="lazy"
+          quality="20"
+          @load="loading = false"
         />
+        <div
+          v-if="loading"
+          class="absolute w-full h-full bg-red-500 top-0 z-20"
+        ></div>
         <div
           class="bg-black bg-opacity-75 text-white w-full h-full absolute top-0 p-5 flex flex-col justify-center items-center opacity-0 transition-opacity duration-500 hover:opacity-100"
         >
@@ -67,13 +71,14 @@ export default {
       type: Number,
       required: true,
     },
-    loading: {
-      type: Boolean,
-      required: true,
-    },
     movie: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    teste() {
+      console.log('laoded')
     },
   },
 }
