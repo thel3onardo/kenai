@@ -1,4 +1,5 @@
 export default {
+  buildDir: 'dist',
   // Glo'b'al page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Kenai',
